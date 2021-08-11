@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pop</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .main_box{
+      /* display: flex;
+      align-items: center;
+      flex-wrap: wrap; */
+      border: 1px solid #E1E5E9;
+      border-bottom: none;
+      overflow: hidden;
+    }
+    .main_item{
+      /* display: flex;
+      align-items: center;
+      flex-wrap: wrap; */
+      float: left;
+      width: 50%;
+      text-align: center;
+      border-bottom: 1px solid #E1E5E9;       
+    }
+    .main_item:nth-child(odd) .input{
+        border-right: 1px solid #E1E5E9;
+    }
+    .label{
+      width: 150px;
+      min-height: 40px;
+      line-height: 40px;
+      display: inline-block;
+    }
+    .input{
+      width: calc(100% - 184px);
+      min-height: 40px;
+      line-height: 40px;
+      border-left: 1px solid #E1E5E9;
+      padding: 0 10px;
+      display: inline-block;
+    }  
+  </style>
+</head>
+
+<body>
+  <div class="main_box">
+    <div class="main_item">
+      <span class="label">员工姓名</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">任职机构属性</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">任职机构</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">任职中心</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">任职部门</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">任职岗位</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">岗级</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">入职日期</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">转正申请日期</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item">
+      <span class="label">部门上级</span>
+      <span class="input">1111</span>
+    </div>
+    <div class="main_item" style="width:100%">
+      <span class="label">本人述职</span>
+      <span class="input" style="border-right:none">1111</span>
+    </div>
+  </div>
+
+</body>
+
+</html>

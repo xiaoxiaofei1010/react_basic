@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_回调形式refs</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
+  <script type="text/babel">
+    class Lift extends React.Component{
+      change = ()=>{
+        let {count} = this.state
+        this.setState({ count: ++count})
+      }
+      unmount = ()=> {
+        ReactDOM.unmountComponentAtNode(document.getElementById("test"))
+      }
+      force = ()=>{
+        this.forceUpdate()
+      }
+      //构造器
+      constructor(props){
+        console.log("Lift----constructor");
+        super(props)
+        this.state = {
+          count: 1
+        }
+      }
+      //组件将要挂载钩子
+      componentWillMount(){
+        console.log("Lift----componentWillMount");
+      }
+      //组件挂载完之后的钩子
+      componentDidMount(){
+        console.log("Lift----componentDidMount");
+      }
+      //控制组件更新的"阀门"
+      shouldComponentUpdate(){
+        console.log("Lift----shouldComponentUpdate");
+        return true
+      }
+      componentWillUpdate(){
+        console.log("Lift----componentWillUpdate");
+      }
+      componentDidUpdate() {
+        console.log("Lift----componentDidUpdate");
+      }
+      //组件将要卸载的钩子
+      componentWillUnmount(){
+         console.log("Lift----componentWillUnmount");
+      }
+      render(){
+        console.log("Lift----render");
+        let { count } = this.state
+        return (
+          <div>
+            <h2>文字{count}</h2>
+            <button onClick={this.change}>点击</button>
+            <button onClick={this.unmount}>卸载</button>
+            <button onClick={this.force}>强制更新</button>
+          </div>
+        )
+      }
+    }
+    class A extends React.Component{
+      state = {
+        carName:"奔驰"
+      }
+      change = ()=>{
+        let { carName} = this.state
+        this.setState({ carName:"宝马"})
+      }
+      render(){
+        return(
+          <div>
+            <div>我是A组件</div>
+            <button onClick={this.change}>更换</button>
+            <B name={this.state.carName}/>
+          </div>
+        )
+      }
+    }
+    class B extends React.Component {
+        componentWillReceiveProps(){
+          console.log("B----componentWillReceiveProps")
+        }
+          //控制组件更新的"阀门"
+        shouldComponentUpdate() {
+          console.log("B----shouldComponentUpdate");
+          return true
+        }
+        componentWillUpdate() {
+          console.log("B----componentWillUpdate");
+        }
+        componentDidUpdate() {
+          console.log("B----componentDidUpdate");
+        }
+        render() {
+          return (
+            <div>
+              <div>我是B组件{this.props.name}</div>
+            </div>
+          )
+        }
+      }
+    ReactDOM.render(<A />,document.getElementById("test"))
+  </script>
+</body>
+ 
+</html>

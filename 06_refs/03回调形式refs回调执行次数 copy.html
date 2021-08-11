@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_回调形式refs</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
+  <script type="text/babel">
+    class MyComponents extends React.Component {
+      state = {
+        isHot:false
+      }
+      showData = ()=>{
+        console.log(this)
+        let { input1 } = this;
+        alert(input1.value)
+      }
+      changeData = () => {
+        let { isHot } = this.state
+        this.setState({
+          isHot:!isHot
+        })
+      }
+      render() {
+        let {isHot} = this.state
+        return (
+          <div>
+            {isHot ? '炎热' : '凉爽'}
+            <input ref={(c) => { this.input1 = c; console.log(c)}} type="text" placeholder="显示数据"/>
+            <button onClick={this.showData}>点击显示数据</button>
+           <button onClick={this.changeData}>更新数据</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponents />, document.getElementById('test'))
+  </script>
+</body>
+
+</html>

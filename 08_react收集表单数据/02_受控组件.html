@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_回调形式refs</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
+  <script type="text/babel">
+    //现用现取
+    class Login extends React.Component {
+      state = {
+        userName:'',
+        password:''
+      }
+      handleSubmit = (event) => {
+        event.preventDefault();
+        let { userName, password } = this.state
+        console.log(this);
+        alert(`用户名${userName},密码${password}`)
+      }
+      saveUserName = (event)=>{
+        this.setState({userName:event.target.value})
+      }
+      savePassWord = (event)=>{
+        this.setState({ password:event.target.value})
+      }
+      render() {
+        return (
+          <form action="" onSubmit={this.handleSubmit}>
+            用户名：<input onChange={this.saveUserName} type="text" name="userName" />
+            密码：<input onChange={this.savePassWord} type="password" name="password" />
+            <button>登录</button>
+          </form>
+        )
+      }
+    }
+    ReactDOM.render(<Login />, document.getElementById('test'))
+  </script>
+</body>
+
+</html>
